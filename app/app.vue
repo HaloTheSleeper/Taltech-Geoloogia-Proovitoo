@@ -1,5 +1,3 @@
 <template>
-  <div>
-    Taltech geoloogia instituudi proovitoo
-  </div>
+  <div>Taltech geoloogia instituudi proovitoo</div>
 </template>
