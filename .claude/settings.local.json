@@ -15,7 +15,9 @@
       "Bash(npm run lint:fix:*)",
       "Bash(timeout 15 npx nuxi dev:*)",
       "Bash(npx shadcn-vue@latest add:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(python -m json.tool:*)"
     ]
   }
 }

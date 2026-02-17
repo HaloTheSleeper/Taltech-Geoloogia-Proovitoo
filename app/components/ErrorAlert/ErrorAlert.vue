@@ -2,11 +2,16 @@
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert"
 import Button from "~/components/ui/button/Button.vue"
 
-defineProps<{
-  title: string
-  description: string
-  retryLabel: string
-}>()
+withDefaults(
+  defineProps<{
+    title: string
+    description: string
+    retryLabel?: string
+  }>(),
+  {
+    retryLabel: "Proovi uuesti",
+  },
+)
 
 defineEmits<{
   retry: []

@@ -63,15 +63,23 @@ See:
 
 - Reactive state
 - Loading/error handling
-- Calls into `/lib`
+- Calls server API routes via `useAsyncData` + `$fetch`
 - Files live inside `/composables/{entity-name}` if they are related to a specific entity, for example `/composables/borehole-localities` contains composables related to borehole localities data fetching and state management and `/composables/cms` contains composables related to fetching and managing CMS data from `/public/data`.
-- Use useAsyncData, useFetch as needed, but prefer consistency within the same entity.
+
+### Server routes
+
+`/server/api`
+
+- Nitro server routes that proxy external API requests
+- Read external API URLs from server-only `runtimeConfig` (never exposed to the client)
+- Use `defineCachedEventHandler` for caching responses
+- Example: `/server/api/borehole-localities.get.ts` proxies to the external localities API
 
 ### Lib
 
 `/app/lib`
 
-- Borehole localities API calls live under `/lib/boorehole-localities`
+- Borehole localities API helper functions live under `/lib/borehole-localities`
 - CMS fetching logic lives under `/lib/cms`
 - Pure logic
 - No Vue reactivity
@@ -92,20 +100,34 @@ Rules:
 - UI never fetches `/public/data` directly
 - Composables wrap CMS access
 
+CMS data files:
+
+- `/public/data/layout.json` — navbar title, search placeholder, footer copyright text
+- `/public/data/borehole-localities.json` — list page column labels, empty state, error messages, pagination labels
+
 See:
 
 - `./rules/cms.md`
 
 ### API related data
 
-For API related data, we fetch it directly from the localities API (the url is in the .env file/files) and the fetching logic lives in `/lib/{entity-name}`.
+For API related data, we use Nitro server routes (`/server/api`) to proxy requests to the external API. The external API URL is stored in a `.env` file and accessed via server-only `runtimeConfig`. It is never exposed to the client.
+
+Data flow:
+
+1. Composable calls `$fetch('/api/{entity}', { params })` via `useAsyncData`
+2. Server route reads the external API URL from `runtimeConfig`
+3. Server route fetches from the external API with caching
+4. Response is returned to the client
 
 Rules:
 
-- All API calls live in `/app/lib/{entity-name}`
-- UI never calls API directly
-- Composables wrap API usage
-- For example borehole localities API calls live in `/app/lib/borehole-localities` and any page that needs borehole localities data should use a composable that calls into that lib.
+- External API URLs live in `.env` and are read via server-only `runtimeConfig`
+- Server routes live in `/server/api/` and proxy external API requests
+- Server routes use `defineCachedEventHandler` for caching
+- Composables call the internal server routes (e.g., `/api/borehole-localities`), never the external API directly
+- Helper functions for building params live in `/app/lib/{entity-name}`
+- UI never calls APIs directly — composables wrap all data access
 
 See:
 
@@ -152,4 +174,4 @@ Before considering work complete:
 
 Full checklist:
 
-- `./rules/verify.md`s
+- `./rules/verify.md`

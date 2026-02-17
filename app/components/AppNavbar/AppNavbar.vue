@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useDebounceFn } from "@vueuse/core"
 import Input from "~/components/ui/input/Input.vue"
 
 defineProps<{
@@ -6,7 +7,25 @@ defineProps<{
   searchPlaceholder: string
 }>()
 
-const { searchQuery } = useBoreholeSearch()
+const route = useRoute()
+const localSearch = ref((route.query.search as string) || "")
+
+const debouncedNavigate = useDebounceFn((value: string) => {
+  navigateTo({
+    path: route.path,
+    query: {
+      ...route.query,
+      search: value || undefined,
+      page: undefined,
+    },
+  })
+}, 400)
+
+const handleInput = (event: Event) => {
+  const value = (event.target as HTMLInputElement).value
+  localSearch.value = value
+  debouncedNavigate(value)
+}
 </script>
 
 <template>
@@ -17,9 +36,10 @@ const { searchQuery } = useBoreholeSearch()
       </h1>
       <div class="w-full max-w-sm">
         <Input
-          v-model="searchQuery"
+          :model-value="localSearch"
           :placeholder="searchPlaceholder"
           class="border-primary-foreground/30 bg-primary-foreground/10 text-primary-foreground placeholder:text-primary-foreground/60 focus-visible:ring-primary-foreground/50"
+          @input="handleInput"
         />
       </div>
     </div>

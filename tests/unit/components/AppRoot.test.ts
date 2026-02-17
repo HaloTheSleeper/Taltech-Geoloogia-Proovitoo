@@ -11,10 +11,6 @@ const mockLayoutData = {
 
 let useLayoutDataMock: ReturnType<typeof vi.fn>
 
-vi.stubGlobal("useBoreholeSearch", () => ({
-  searchQuery: ref(""),
-}))
-
 const mountApp = async (stubs = {}) => {
   const wrapper = mount(
     defineComponent({

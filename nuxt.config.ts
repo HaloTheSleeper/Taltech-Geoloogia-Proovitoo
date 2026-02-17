@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  runtimeConfig: {
+    boreholeLocalitiesApiUrl: process.env.BOREHOLE_LOCALITIES_API_URL || "",
+  },
   modules: ["@nuxtjs/tailwindcss", "@nuxt/fonts"],
   fonts: {
     families: [

@@ -24,7 +24,7 @@
 npm install
 ```
 
-2. Create `.env.development` and/or `.env.production` files in the project root (see [Environment variables](#environment-variables) below).
+2. Create a `.env` file in the project root (see [Environment variables](#environment-variables) below).
 
 3. Start the development server:
 
@@ -48,7 +48,7 @@ The app will be available at `http://localhost:3000`.
 
 ## Environment variables
 
-Environment files (`.env.*`) are git-ignored. Create `.env.development` and/or `.env.production` in the project root.
+The `.env` file is git-ignored. Create a `.env` file in the project root with the required variables.
 
 The following variables are required:
 
@@ -56,7 +56,7 @@ The following variables are required:
 | ----------------------------- | ---------------------------------------- |
 | `BOREHOLE_LOCALITIES_API_URL` | Base URL for the borehole localities API |
 
-Contact the project maintainer for the correct values.
+These are server-only variables — they are read via Nuxt's `runtimeConfig` and are only accessible on the server side (in Nitro server routes). They are never exposed to the client.
 
 ## Project structure
 
@@ -64,17 +64,34 @@ Contact the project maintainer for the correct values.
 app/
   app.vue            # Root component
   components/        # Presentational Vue components (no data fetching)
-    ui/              # shadcn-vue components
+    ui/              # shadcn-vue components (alert, button, input, table, pagination, skeleton)
+    borehole-localities/  # Borehole locality list components
+      BoreholeLocalitiesTable/      # Data table
+      BoreholeLocalitiesLoading/    # Skeleton loading state
+      BoreholeLocalitiesEmpty/      # Empty state (no results)
+      BoreholeLocalitiesPagination/ # Pagination controls
+    AppNavbar/       # Navigation bar with search
+    AppFooter/       # Footer
+    ErrorAlert/      # Reusable error alert with retry
   pages/             # Route-level pages (orchestrate via composables)
   composables/       # Reactive state, loading/error handling, calls into lib
+    borehole-localities/  # Borehole localities data composable
+    cms/                  # CMS data composables
   lib/               # Pure logic, API/CMS fetching (no Vue reactivity)
-    borehole-localities/  # Borehole localities API calls
+    borehole-localities/  # Borehole localities API call helpers
     cms/                  # CMS mock data fetching
   types/             # TypeScript type definitions (per entity)
+server/
+  api/               # Nitro server API routes
+    borehole-localities.get.ts  # Proxies requests to the external localities API
 public/
   data/              # Mock CMS JSON files
+    layout.json              # Navbar and footer text
+    borehole-localities.json # List page text (columns, empty state, errors, pagination)
 tests/
   unit/              # Unit tests
+    components/      # Component tests
+    utils/           # Utility/lib function tests
   integration/       # Integration tests
 .claude/             # Claude Code agent instructions
 ```
@@ -85,13 +102,43 @@ The project follows a layered architecture with strict separation of concerns:
 
 - **Components** (`/app/components`) — Presentational only. Receive data via props, emit events. Never fetch data directly.
 - **Pages** (`/app/pages`) — Route-level orchestration. Use composables to fetch and display data.
-- **Composables** (`/app/composables`) — Manage reactive state, loading/error handling. Call into lib functions.
+- **Composables** (`/app/composables`) — Manage reactive state, loading/error handling. Call into server API routes via `useAsyncData` + `$fetch`.
 - **Lib** (`/app/lib`) — Pure data-fetching logic and transformations. No Vue reactivity. Each API entity gets its own folder (e.g., `/app/lib/borehole-localities`).
+- **Server routes** (`/server/api`) — Nitro server routes that proxy external API requests. Read API URLs from server-only `runtimeConfig`. Responses are cached.
 - **Types** (`/app/types`) — TypeScript type definitions, one file per entity.
+
+### Data flow for API data
+
+1. **Page** uses a composable (e.g., `useBoreholeLocalities`)
+2. **Composable** calls the internal server route via `$fetch('/api/borehole-localities', { params })`
+3. **Server route** reads the external API URL from `runtimeConfig` and fetches from the external API
+4. Response is cached (1 hour by default) and returned to the client
+
+This ensures the external API URL stays server-side only and is never exposed to the client.
+
+## Features
+
+### Borehole localities list (Home page)
+
+- Fetches borehole localities from the external API via a server route
+- Displays results in a table with columns: ID, Name, Country, Latitude, Longitude, Depth, Elevation
+- Server-side search via the navbar input (debounced, updates URL query params)
+- Pagination with 20 items per page (uses shadcn-vue Pagination)
+- Loading skeleton state
+- Error state with retry button (reusable ErrorAlert component)
+- Empty state when no results are found
+- All UI text comes from CMS data (`/public/data/borehole-localities.json`)
 
 ## CMS readiness
 
 We currently don't have a CMS, but the codebase is structured in a way that allows us to easily integrate one in the future. For "CMS related data" (anything that doesn't come from the localities API) we simulate a CMS by serving JSON from `/public/data`. CMS fetching logic lives in `/app/lib/cms`.
+
+### Current CMS data files
+
+| File                       | Purpose                                               |
+| -------------------------- | ----------------------------------------------------- |
+| `layout.json`              | Navbar title, search placeholder, footer text         |
+| `borehole-localities.json` | List page: column labels, empty/error/pagination text |
 
 ## Fonts
 

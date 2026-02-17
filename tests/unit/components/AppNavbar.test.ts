@@ -3,11 +3,14 @@ import { mount } from "@vue/test-utils"
 import { ref } from "vue"
 import AppNavbar from "~/components/AppNavbar/AppNavbar.vue"
 
-const searchQuery = ref("")
+vi.stubGlobal("ref", ref)
 
-vi.stubGlobal("useBoreholeSearch", () => ({
-  searchQuery,
+vi.stubGlobal("useRoute", () => ({
+  query: {},
+  path: "/",
 }))
+
+vi.stubGlobal("navigateTo", vi.fn())
 
 describe("AppNavbar", () => {
   const defaultProps = {

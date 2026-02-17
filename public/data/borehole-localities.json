@@ -1,0 +1,26 @@
+{
+  "pageTitle": "Puuraukude loend",
+  "columns": {
+    "id": "ID",
+    "name": "Nimi",
+    "country": "Riik",
+    "latitude": "Laiuskraad",
+    "longitude": "Pikkuskraad",
+    "depth": "Sügavus (m)",
+    "elevation": "Kõrgus (m)"
+  },
+  "emptyState": {
+    "title": "Puuraukusid ei leitud",
+    "description": "Teie otsingule vastavaid puuraukusid ei leitud. Proovige muuta otsingut."
+  },
+  "error": {
+    "title": "Andmete laadimine ebaõnnestus",
+    "description": "Puuraukude andmeid ei õnnestunud laadida. Palun proovige uuesti.",
+    "retryLabel": "Proovi uuesti"
+  },
+  "pagination": {
+    "previous": "Eelmine",
+    "next": "Järgmine",
+    "pageInfo": "Lehekülg {page} / {totalPages}"
+  }
+}
