@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 255 255 255;
+    --foreground: 31 41 55;
+
+    --primary: 45 42 95;
+    --primary-foreground: 255 255 255;
+
+    --accent: 230 0 126;
+    --accent-foreground: 255 255 255;
+
+    --muted: 245 246 248;
+    --muted-foreground: 107 114 128;
+
+    --border: 229 231 235;
+    --card: 255 255 255;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+}

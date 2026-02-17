@@ -5,6 +5,6 @@ import App from "~/app.vue"
 describe("App", () => {
   it("renders root component", () => {
     const wrapper = mount(App)
-    expect(wrapper.text()).toContain("Borehole data visualization tool")
+    expect(wrapper.text()).toContain("Puuraukude visualiseerimise tööriist")
   })
 })
