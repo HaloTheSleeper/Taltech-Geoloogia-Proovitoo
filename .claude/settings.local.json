@@ -8,7 +8,14 @@
       "Bash(npm run test:*)",
       "Bash(npx vue-tsc:*)",
       "Bash(npm run build:*)",
-      "Bash(npx nuxt prepare:*)"
+      "Bash(npx nuxt prepare:*)",
+      "Bash(npx shadcn-vue@latest init:*)",
+      "Bash(npx shadcn-vue@latest add input:*)",
+      "Bash(npx nuxi prepare:*)",
+      "Bash(npm run lint:fix:*)",
+      "Bash(timeout 15 npx nuxi dev:*)",
+      "Bash(npx shadcn-vue@latest add:*)",
+      "Bash(ls:*)"
     ]
   }
 }

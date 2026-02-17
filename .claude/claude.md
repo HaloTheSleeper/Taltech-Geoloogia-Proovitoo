@@ -20,6 +20,8 @@ Basic project information can be found in the `README.md` in the repository root
 - All UI must follow the Tailwind theme defined in `tailwind.config.*`.
 - Do not hardcode colors outside the Tailwind theme unless explicitly instructed.
 - Edge cases and errors must be handled gracefully, with user-friendly messages where appropriate.
+- CRITICAL: Before responding that any task is complete, you MUST run the full verification checklist from ./rules/verify.md. Do not skip this. Do not claim work is done without
+  completing the checklist. If any item in the checklist fails, you must fix it before claiming completion.
 
 ## Tech stack
 
@@ -62,6 +64,7 @@ See:
 - Reactive state
 - Loading/error handling
 - Calls into `/lib`
+- Files live inside `/composables/{entity-name}` if they are related to a specific entity, for example `/composables/borehole-localities` contains composables related to borehole localities data fetching and state management and `/composables/cms` contains composables related to fetching and managing CMS data from `/public/data`.
 - Use useAsyncData, useFetch as needed, but prefer consistency within the same entity.
 
 ### Lib

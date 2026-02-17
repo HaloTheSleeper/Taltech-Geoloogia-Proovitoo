@@ -9,5 +9,15 @@ export default defineNuxtConfig({
       { name: "Inter", provider: "google", weights: [400, 500, 600, 700] },
     ],
   },
+  imports: {
+    dirs: ["composables/**"],
+  },
   css: ["~/assets/css/main.css"],
+  components: [
+    {
+      path: "~/components",
+      pathPrefix: false,
+      ignore: ["**/ui/**/index.ts"],
+    },
+  ],
 })

@@ -21,6 +21,7 @@ Examples:
 ### Allowed in `/app/lib/{entity-name}`
 
 - `$fetch` for HTTP requests
+- `node:fs/promises` for server-side file reading (CMS data in `/app/lib/cms`)
 - parameter building (`params`, query string building)
 - request/response mapping (API shape → app shape)
 - reusable helpers (pagination helpers, filtering helpers)

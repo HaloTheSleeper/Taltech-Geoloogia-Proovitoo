@@ -13,7 +13,9 @@ Examples:
 
 Access pattern:
 
-- Should use Nuxt specific methods for fetching, like $fetch - can suggest alternatives.
+- During SSR: read JSON files directly from the filesystem (via `node:fs/promises`) for server-side data access (similar to Next.js server components).
+- During client-side navigation: fetch static files via `$fetch('/data/...')` from the public directory.
+- This logic is handled by `fetchCmsData` in `/app/lib/cms` — no server API routes are used for CMS data.
 
 ## Architecture rules
 

@@ -36,4 +36,22 @@ export default defineConfig([
   },
   prettier,
   pluginPrettier,
+  {
+    files: ["app/pages/**/*.vue", "app/components/ui/**/*.vue"],
+    rules: {
+      "vue/multi-word-component-names": "off",
+    },
+  },
+  {
+    files: ["**/*.{ts,mts,cts,vue}"],
+    rules: {
+      "no-undef": "off",
+    },
+  },
+  {
+    files: ["tests/**/*.ts"],
+    rules: {
+      "vue/one-component-per-file": "off",
+    },
+  },
 ])

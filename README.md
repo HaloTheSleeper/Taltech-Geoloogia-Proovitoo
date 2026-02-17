@@ -93,18 +93,14 @@ The project follows a layered architecture with strict separation of concerns:
 
 We currently don't have a CMS, but the codebase is structured in a way that allows us to easily integrate one in the future. For "CMS related data" (anything that doesn't come from the localities API) we simulate a CMS by serving JSON from `/public/data`. CMS fetching logic lives in `/app/lib/cms`.
 
-## Possibility to add other data sources
-
-The architecture allows us to easily add other data sources in the future. For example, if we wanted to add another API, we would create a new folder under `/app/lib` for that API's fetching logic, and then create composables that wrap that logic for use in our components.
-
 ## Fonts
 
 Fonts are managed by `@nuxt/fonts` (auto-optimized, no manual `<link>` tags needed).
 
-| Font        | Tailwind class  | Usage    |
-| ----------- | --------------- | -------- |
-| Montserrat  | `font-heading`  | Headings |
-| Inter        | `font-body`     | Body text |
+| Font       | Tailwind class | Usage     |
+| ---------- | -------------- | --------- |
+| Montserrat | `font-heading` | Headings  |
+| Inter      | `font-body`    | Body text |
 
 Headings (`h1`–`h6`) use `font-heading` by default. Body text uses `font-body` by default. Both are applied globally in `app/assets/css/main.css`.
 
@@ -112,18 +108,18 @@ Headings (`h1`–`h6`) use `font-heading` by default. Body text uses `font-body`
 
 The app uses CSS custom properties (defined in `app/assets/css/main.css`) mapped to Tailwind utility classes via `tailwind.config.ts`. Available color tokens:
 
-| Token              | Value (RGB)     | Usage                        |
-| ------------------ | --------------- | ---------------------------- |
-| `background`       | 255 255 255     | Page background              |
-| `foreground`       | 31 41 55        | Default text                 |
-| `primary`          | 45 42 95        | Primary actions, headings    |
-| `primary-foreground` | 255 255 255   | Text on primary backgrounds  |
-| `accent`           | 230 0 126       | Highlights, call-to-actions  |
-| `accent-foreground` | 255 255 255    | Text on accent backgrounds   |
-| `muted`            | 245 246 248     | Subtle backgrounds           |
-| `muted-foreground` | 107 114 128     | Secondary text               |
-| `border`           | 229 231 235     | Borders, dividers            |
-| `card`             | 255 255 255     | Card backgrounds             |
+| Token                | Value (RGB) | Usage                       |
+| -------------------- | ----------- | --------------------------- |
+| `background`         | 255 255 255 | Page background             |
+| `foreground`         | 31 41 55    | Default text                |
+| `primary`            | 45 42 95    | Primary actions, headings   |
+| `primary-foreground` | 255 255 255 | Text on primary backgrounds |
+| `accent`             | 230 0 126   | Highlights, call-to-actions |
+| `accent-foreground`  | 255 255 255 | Text on accent backgrounds  |
+| `muted`              | 245 246 248 | Subtle backgrounds          |
+| `muted-foreground`   | 107 114 128 | Secondary text              |
+| `border`             | 229 231 235 | Borders, dividers           |
+| `card`               | 255 255 255 | Card backgrounds            |
 
 Use Tailwind classes like `bg-primary`, `text-accent`, `border-border`, etc. Do not hardcode colors outside the theme.
 

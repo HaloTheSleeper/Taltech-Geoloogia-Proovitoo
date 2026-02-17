@@ -29,6 +29,7 @@ Confirm:
 - No obvious dead code
 - No unnecessary console.logs
 - No `any` types unless unavoidable
+- Documentation up to date for any new code (both /.claude folder and README.md)
 
 ## Verifier subagent behavior
 
@@ -39,3 +40,4 @@ When asked to verify work:
 3. No TypeScript errors or warnings in the codebase
 4. Report issues clearly
 5. Suggest fixes if needed
+6. Documentation up to date for any new code (both /.claude folder and README.md)

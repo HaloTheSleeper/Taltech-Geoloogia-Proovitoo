@@ -1,3 +1,29 @@
+<script setup lang="ts">
+const { data: layout, error, refresh } = await useLayoutData()
+</script>
+
 <template>
-  <div class="bg-primary text-primary-foreground">Puuraukude visualiseerimise tööriist</div>
+  <div class="flex min-h-screen flex-col">
+    <template v-if="error">
+      <div class="content-container py-8">
+        <ErrorAlert
+          title="Andmete laadimine ebaõnnestus"
+          description="Lehekülge ei õnnestunud laadida. Palun proovige uuesti."
+          retry-label="Proovi uuesti"
+          @retry="refresh()"
+        />
+      </div>
+    </template>
+    <template v-else>
+      <AppNavbar
+        v-if="layout"
+        :title="layout.navbar.title"
+        :search-placeholder="layout.navbar.searchPlaceholder"
+      />
+      <main class="flex-1">
+        <NuxtPage />
+      </main>
+      <AppFooter v-if="layout" :copyright="layout.footer.copyright" />
+    </template>
+  </div>
 </template>
