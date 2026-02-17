@@ -9,16 +9,16 @@ import pluginPrettier from "eslint-plugin-prettier/recommended"
 
 export default defineConfig([
   {
-    ignores: [".nuxt/**", ".output/**", "dist/**", "node_modules/**"]
+    ignores: [".nuxt/**", ".output/**", "dist/**", "node_modules/**"],
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
-    }
+        ...globals.node,
+      },
+    },
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,
@@ -30,10 +30,10 @@ export default defineConfig([
       parserOptions: {
         parser: tseslint.parser,
         ecmaVersion: "latest",
-        sourceType: "module"
-      }
-    }
+        sourceType: "module",
+      },
+    },
   },
   prettier,
-  pluginPrettier
+  pluginPrettier,
 ])

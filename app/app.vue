@@ -1,3 +1,3 @@
 <template>
-  <div>Taltech geoloogia instituudi proovitoo</div>
+  <div>Borehole data visualization tool</div>
 </template>
