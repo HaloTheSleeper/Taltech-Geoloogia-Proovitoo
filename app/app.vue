@@ -1,9 +1,5 @@
 <script setup lang="ts">
 const { data: layout, error, refresh } = await useLayoutData()
-
-useHead({
-  meta: [{ name: "robots", content: "noindex, nofollow" }],
-})
 </script>
 
 <template>

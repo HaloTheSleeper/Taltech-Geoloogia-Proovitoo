@@ -79,8 +79,8 @@ describe("BoreholeLocalitiesTable", () => {
       props: { localities: [mockLocality], columns },
     })
     expect(wrapper.text()).toContain("1")
-    expect(wrapper.text()).toContain("Hüti F-358 borehole")
-    expect(wrapper.text()).toContain("Estonia")
+    expect(wrapper.text()).toContain("Hüti F-358 puurauk")
+    expect(wrapper.text()).toContain("Eesti")
     expect(wrapper.text()).toContain("58.899398")
     expect(wrapper.text()).toContain("22.524572")
     expect(wrapper.text()).toContain("335.3")
@@ -96,7 +96,7 @@ describe("BoreholeLocalitiesTable", () => {
     expect(dashCells.length).toBeGreaterThanOrEqual(5)
   })
 
-  it("prefers name_en over name", () => {
+  it("prefers name over en_name", () => {
     const localityWithBothNames: BoreholeLocality = {
       ...mockLocality,
       name: "Estonian name",
@@ -105,19 +105,19 @@ describe("BoreholeLocalitiesTable", () => {
     const wrapper = mount(BoreholeLocalitiesTable, {
       props: { localities: [localityWithBothNames], columns },
     })
-    expect(wrapper.text()).toContain("English name")
+    expect(wrapper.text()).toContain("Estonian name")
   })
 
-  it("falls back to name when name_en is null", () => {
+  it("falls back to en_name when name is null", () => {
     const localityNoEnglish: BoreholeLocality = {
       ...mockLocality,
-      name: "Estonian name",
-      name_en: null,
+      name: null,
+      name_en: "English name",
     }
     const wrapper = mount(BoreholeLocalitiesTable, {
       props: { localities: [localityNoEnglish], columns },
     })
-    expect(wrapper.text()).toContain("Estonian name")
+    expect(wrapper.text()).toContain("English name")
   })
 
   it("renders multiple rows", () => {

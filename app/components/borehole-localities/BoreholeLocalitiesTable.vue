@@ -33,8 +33,8 @@ defineProps<{
       <TableBody>
         <TableRow v-for="locality in localities" :key="locality.id">
           <TableCell class="font-medium">{{ locality.id }}</TableCell>
-          <TableCell>{{ locality.name_en || locality.name || "–" }}</TableCell>
-          <TableCell>{{ locality.country?.name_en || locality.country?.name || "–" }}</TableCell>
+          <TableCell>{{ locality.name || locality.name_en || "–" }}</TableCell>
+          <TableCell>{{ locality.country?.name || locality.country?.name_en || "–" }}</TableCell>
           <TableCell class="hidden sm:table-cell">{{ locality.latitude ?? "–" }}</TableCell>
           <TableCell class="hidden sm:table-cell">{{ locality.longitude ?? "–" }}</TableCell>
           <TableCell>{{ locality.depth ?? "–" }}</TableCell>
