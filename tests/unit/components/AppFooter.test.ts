@@ -4,7 +4,7 @@ import AppFooter from "~/components/layout/AppFooter.vue"
 
 describe("AppFooter", () => {
   const defaultProps = {
-    copyright: "Tallinna Ülikooli Geoloogia Instituut — Kõik õigused kaitstud",
+    copyright: "Test copyright",
   }
 
   it("renders the copyright text", () => {

@@ -7,9 +7,9 @@ import type { BoreholeLocalitiesCmsData } from "~/types/cms"
 vi.stubGlobal("computed", computed)
 
 const labels: BoreholeLocalitiesCmsData["pagination"] = {
-  previous: "Eelmine",
-  next: "Järgmine",
-  pageInfo: "Lehekülg {page} / {totalPages}",
+  previous: "Prev",
+  next: "Next",
+  pageInfo: "Page {page} of {totalPages}",
 }
 
 describe("BoreholeLocalitiesPagination", () => {
@@ -17,15 +17,15 @@ describe("BoreholeLocalitiesPagination", () => {
     const wrapper = mount(BoreholeLocalitiesPagination, {
       props: { page: 2, totalPages: 10, labels },
     })
-    expect(wrapper.text()).toContain("Lehekülg 2 / 10")
+    expect(wrapper.text()).toContain("Page 2 of 10")
   })
 
   it("renders previous and next labels", () => {
     const wrapper = mount(BoreholeLocalitiesPagination, {
       props: { page: 1, totalPages: 5, labels },
     })
-    expect(wrapper.text()).toContain("Eelmine")
-    expect(wrapper.text()).toContain("Järgmine")
+    expect(wrapper.text()).toContain("Prev")
+    expect(wrapper.text()).toContain("Next")
   })
 
   it("renders page number buttons", () => {

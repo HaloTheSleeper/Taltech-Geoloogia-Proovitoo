@@ -6,12 +6,12 @@ import type { BoreholeLocalitiesCmsData } from "~/types/cms"
 
 const columns: BoreholeLocalitiesCmsData["columns"] = {
   id: "ID",
-  name: "Nimi",
-  country: "Riik",
-  latitude: "Laiuskraad",
-  longitude: "Pikkuskraad",
-  depth: "Sügavus (m)",
-  elevation: "Kõrgus (m)",
+  name: "Name",
+  country: "Country",
+  latitude: "Latitude",
+  longitude: "Longitude",
+  depth: "Depth (m)",
+  elevation: "Elevation (m)",
 }
 
 const mockLocality: BoreholeLocality = {
@@ -66,12 +66,12 @@ describe("BoreholeLocalitiesTable", () => {
       props: { localities: [mockLocality], columns },
     })
     expect(wrapper.text()).toContain("ID")
-    expect(wrapper.text()).toContain("Nimi")
-    expect(wrapper.text()).toContain("Riik")
-    expect(wrapper.text()).toContain("Laiuskraad")
-    expect(wrapper.text()).toContain("Pikkuskraad")
-    expect(wrapper.text()).toContain("Sügavus (m)")
-    expect(wrapper.text()).toContain("Kõrgus (m)")
+    expect(wrapper.text()).toContain("Name")
+    expect(wrapper.text()).toContain("Country")
+    expect(wrapper.text()).toContain("Latitude")
+    expect(wrapper.text()).toContain("Longitude")
+    expect(wrapper.text()).toContain("Depth (m)")
+    expect(wrapper.text()).toContain("Elevation (m)")
   })
 
   it("renders locality data", () => {

@@ -4,6 +4,8 @@ import { defineComponent, h, Suspense, ref } from "vue"
 import App from "~/app.vue"
 import SharedErrorAlert from "~/components/shared/ErrorAlert.vue"
 
+vi.stubGlobal("useHead", vi.fn())
+
 const mockLayoutData = {
   navbar: { title: "Test Title", searchPlaceholder: "Search..." },
   footer: { copyright: "Test copyright" },
@@ -74,8 +76,8 @@ describe("App", () => {
       const wrapper = await mountApp()
       expect(wrapper.find("nav").exists()).toBe(false)
       expect(wrapper.find("footer").exists()).toBe(false)
-      expect(wrapper.text()).toContain("Andmete laadimine ebaõnnestus")
-      expect(wrapper.text()).toContain("Proovi uuesti")
+      expect(wrapper.findComponent(SharedErrorAlert).exists()).toBe(true)
+      expect(wrapper.find("button").exists()).toBe(true)
     })
 
     it("calls refresh when retry button is clicked", async () => {
