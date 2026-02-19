@@ -20,7 +20,7 @@ defineEmits<{
 
 <template>
   <Alert class="border-accent/30 bg-accent/5">
-    <AlertTitle class="font-heading text-2xl font-semibold text-accent">
+    <AlertTitle class="font-heading text-xl font-semibold text-accent sm:text-2xl">
       {{ title }}
     </AlertTitle>
     <AlertDescription class="mt-2 text-base text-muted-foreground">

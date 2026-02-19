@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { mount } from "@vue/test-utils"
-import AppFooter from "~/components/AppFooter/AppFooter.vue"
+import AppFooter from "~/components/layout/AppFooter.vue"
 
 describe("AppFooter", () => {
   const defaultProps = {

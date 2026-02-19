@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  routeRules: {
+    "/": { prerender: true },
+  },
   runtimeConfig: {
     boreholeLocalitiesApiUrl: process.env.BOREHOLE_LOCALITIES_API_URL || "",
   },
@@ -18,9 +21,23 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css"],
   components: [
     {
-      path: "~/components",
+      path: "~/components/ui",
       pathPrefix: false,
-      ignore: ["**/ui/**/index.ts"],
+      ignore: ["**/index.ts"],
+    },
+    {
+      path: "~/components/layout",
+      prefix: "Layout",
+      pathPrefix: true,
+    },
+    {
+      path: "~/components/shared",
+      prefix: "Shared",
+      pathPrefix: true,
+    },
+    {
+      path: "~/components/borehole-localities",
+      pathPrefix: false,
     },
   ],
 })

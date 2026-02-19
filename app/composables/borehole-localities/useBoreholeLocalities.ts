@@ -1,4 +1,4 @@
-import type { BoreholeLocalitiesResponse } from "~/types/borehole-localities"
+import type { BoreholeLocalitiesResponse } from "~/types/api"
 
 const PAGE_SIZE = 20
 

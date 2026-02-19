@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest"
 import { mount, flushPromises } from "@vue/test-utils"
 import { defineComponent, h, Suspense, ref } from "vue"
 import App from "~/app.vue"
-import ErrorAlert from "~/components/ErrorAlert/ErrorAlert.vue"
+import SharedErrorAlert from "~/components/shared/ErrorAlert.vue"
 
 const mockLayoutData = {
   navbar: { title: "Test Title", searchPlaceholder: "Search..." },
@@ -20,10 +20,10 @@ const mountApp = async (stubs = {}) => {
     }),
     {
       global: {
-        components: { ErrorAlert },
+        components: { SharedErrorAlert },
         stubs: {
-          AppNavbar: { template: "<nav />" },
-          AppFooter: { template: "<footer />" },
+          LayoutAppNavbar: { template: "<nav />" },
+          LayoutAppFooter: { template: "<footer />" },
           NuxtPage: { template: "<div />" },
           ...stubs,
         },

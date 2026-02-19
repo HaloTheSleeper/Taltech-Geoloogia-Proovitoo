@@ -80,7 +80,9 @@ app/
   lib/               # Pure logic, API/CMS fetching (no Vue reactivity)
     borehole-localities/  # Borehole localities API call helpers
     cms/                  # CMS mock data fetching
-  types/             # TypeScript type definitions (per entity)
+  types/             # TypeScript type definitions
+    api/              # External API types (responses, params) — barrel at index.ts
+    cms/              # CMS JSON types — barrel at index.ts
 server/
   api/               # Nitro server API routes
     borehole-localities.get.ts  # Proxies requests to the external localities API
@@ -105,7 +107,7 @@ The project follows a layered architecture with strict separation of concerns:
 - **Composables** (`/app/composables`) — Manage reactive state, loading/error handling. Call into server API routes via `useAsyncData` + `$fetch`.
 - **Lib** (`/app/lib`) — Pure data-fetching logic and transformations. No Vue reactivity. Each API entity gets its own folder (e.g., `/app/lib/borehole-localities`).
 - **Server routes** (`/server/api`) — Nitro server routes that proxy external API requests. Read API URLs from server-only `runtimeConfig`. Responses are cached.
-- **Types** (`/app/types`) — TypeScript type definitions, one file per entity.
+- **Types** (`/app/types`) — TypeScript type definitions split by data source: `api/` for external API types, `cms/` for CMS types. Each subfolder has a barrel `index.ts` — always import from `~/types/api` or `~/types/cms`.
 
 ### Data flow for API data
 
@@ -120,6 +122,7 @@ This ensures the external API URL stays server-side only and is never exposed to
 
 ### Borehole localities list (Home page)
 
+- Default route (`/`) is prerendered at build time (SSG) via `routeRules` in `nuxt.config.ts` — requires the external API to be reachable during build
 - Fetches borehole localities from the external API via a server route
 - Displays results in a table with columns: ID, Name, Country, Latitude, Longitude, Depth, Elevation
 - Server-side search via the navbar input (debounced, updates URL query params)

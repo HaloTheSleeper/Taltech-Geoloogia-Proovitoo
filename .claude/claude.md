@@ -47,8 +47,11 @@ See:
 
 - Presentational only
 - No direct API or CMS fetching
-- `/components/ui/` is used for shadcn-vue components.
-- `components/borehole-localities` is used for components related to borehole localities, that we get from the borehole localities API.
+- Components are grouped by feature/logic into kebab-case folders. `.vue` files live flat inside the folder — no per-component subfolders.
+- `/components/ui/` — shadcn-vue components (auto-generated, leave as-is)
+- `/components/layout/` — app shell components (`AppNavbar`, `AppFooter`); auto-imported by Nuxt as `<LayoutAppNavbar>`, `<LayoutAppFooter>`
+- `/components/shared/` — reusable cross-feature components (e.g. `ErrorAlert`); auto-imported as `<SharedErrorAlert>`
+- `/components/borehole-localities/` — components specific to borehole localities data
 
 ### Pages
 
@@ -86,7 +89,12 @@ See:
 
 ### Types
 
-The types for the application live in `/app/types`, each entity has its own file, for example `/app/types/borehole-localities.ts` contains types related to the borehole localities API.
+The types for the application live in `/app/types`, split into two subfolders by data source:
+
+- `/app/types/api/` — types for external API responses and params (e.g. `BoreholeLocality`, `BoreholeLocalitiesResponse`)
+- `/app/types/cms/` — types for CMS JSON data (e.g. `BoreholeLocalitiesCmsData`, `LayoutData`)
+
+Each subfolder has a barrel `index.ts` that re-exports all types within it. Consumers always import from the barrel (e.g. `~/types/api`, `~/types/cms`), not from individual files directly.
 
 ## Data sources
 

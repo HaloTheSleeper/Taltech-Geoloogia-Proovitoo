@@ -1,4 +1,4 @@
-import type { LayoutData } from "~/types/layout"
+import type { LayoutData } from "~/types/cms"
 import { fetchCmsData } from "~/lib/cms"
 
 export const useLayoutData = () => {

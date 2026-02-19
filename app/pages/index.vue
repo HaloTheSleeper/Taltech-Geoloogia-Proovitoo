@@ -14,15 +14,15 @@ const handlePageChange = (newPage: number) => {
 </script>
 
 <template>
-  <div class="content-container py-8">
-    <h2 v-if="cms" class="font-heading text-2xl font-semibold">
+  <div class="content-container py-6 sm:py-8">
+    <h2 v-if="cms" class="font-heading text-xl font-semibold sm:text-2xl">
       {{ cms.pageTitle }}
     </h2>
 
-    <div class="mt-6">
+    <div class="mt-4 sm:mt-6">
       <BoreholeLocalitiesLoading v-if="isLoading" />
 
-      <ErrorAlert
+      <SharedErrorAlert
         v-else-if="error && cms"
         :title="cms.error.title"
         :description="cms.error.description"

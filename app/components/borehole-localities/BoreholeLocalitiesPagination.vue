@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BoreholeLocalitiesCmsData } from "~/types/borehole-localities"
+import type { BoreholeLocalitiesCmsData } from "~/types/cms"
 import {
   Pagination,
   PaginationContent,
@@ -36,7 +36,7 @@ const pageInfo = computed(() =>
     :sibling-count="1"
     @update:page="$emit('update:page', $event)"
   >
-    <PaginationContent v-slot="{ items }">
+    <PaginationContent v-slot="{ items }" class="flex-wrap gap-1.5 sm:gap-1">
       <PaginationPrevious as="button">
         {{ labels.previous }}
       </PaginationPrevious>

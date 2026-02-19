@@ -9,7 +9,7 @@ import pluginPrettier from "eslint-plugin-prettier/recommended"
 
 export default defineConfig([
   {
-    ignores: [".nuxt/**", ".output/**", "dist/**", "node_modules/**"],
+    ignores: [".nuxt/**", ".output/**", "dist/**", "node_modules/**", "app/components/ui/**"],
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
@@ -37,7 +37,7 @@ export default defineConfig([
   prettier,
   pluginPrettier,
   {
-    files: ["app/pages/**/*.vue", "app/components/ui/**/*.vue"],
+    files: ["app/pages/**/*.vue"],
     rules: {
       "vue/multi-word-component-names": "off",
     },

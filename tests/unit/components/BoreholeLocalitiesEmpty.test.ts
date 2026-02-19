@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { mount } from "@vue/test-utils"
-import BoreholeLocalitiesEmpty from "~/components/borehole-localities/BoreholeLocalitiesEmpty/BoreholeLocalitiesEmpty.vue"
+import BoreholeLocalitiesEmpty from "~/components/borehole-localities/BoreholeLocalitiesEmpty.vue"
 
 describe("BoreholeLocalitiesEmpty", () => {
   const defaultProps = {

@@ -1,4 +1,4 @@
-import type { BoreholeLocalitiesCmsData } from "~/types/borehole-localities"
+import type { BoreholeLocalitiesCmsData } from "~/types/cms"
 import { fetchCmsData } from "~/lib/cms"
 
 export const useBoreholeLocalitiesCms = () => {

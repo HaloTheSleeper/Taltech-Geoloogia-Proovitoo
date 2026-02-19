@@ -1,7 +1,4 @@
-import type {
-  BoreholeLocalitiesParams,
-  BoreholeLocalitiesResponse,
-} from "~/types/borehole-localities"
+import type { BoreholeLocalitiesParams, BoreholeLocalitiesResponse } from "~/types/api"
 
 export const fetchBoreholeLocalities = async (
   baseUrl: string,

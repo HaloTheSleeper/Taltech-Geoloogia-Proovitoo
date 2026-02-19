@@ -1,7 +1,8 @@
 import { describe, it, expect } from "vitest"
 import { mount } from "@vue/test-utils"
-import BoreholeLocalitiesTable from "~/components/borehole-localities/BoreholeLocalitiesTable/BoreholeLocalitiesTable.vue"
-import type { BoreholeLocality, BoreholeLocalitiesCmsData } from "~/types/borehole-localities"
+import BoreholeLocalitiesTable from "~/components/borehole-localities/BoreholeLocalitiesTable.vue"
+import type { BoreholeLocality } from "~/types/api"
+import type { BoreholeLocalitiesCmsData } from "~/types/cms"
 
 const columns: BoreholeLocalitiesCmsData["columns"] = {
   id: "ID",

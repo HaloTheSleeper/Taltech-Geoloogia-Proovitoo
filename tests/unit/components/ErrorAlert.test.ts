@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest"
 import { mount } from "@vue/test-utils"
-import ErrorAlert from "~/components/ErrorAlert/ErrorAlert.vue"
+import ErrorAlert from "~/components/shared/ErrorAlert.vue"
 
 describe("ErrorAlert", () => {
   const defaultProps = {

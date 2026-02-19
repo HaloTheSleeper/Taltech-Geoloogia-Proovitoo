@@ -1,8 +1,8 @@
 import { describe, it, expect, vi } from "vitest"
 import { mount } from "@vue/test-utils"
 import { computed } from "vue"
-import BoreholeLocalitiesPagination from "~/components/borehole-localities/BoreholeLocalitiesPagination/BoreholeLocalitiesPagination.vue"
-import type { BoreholeLocalitiesCmsData } from "~/types/borehole-localities"
+import BoreholeLocalitiesPagination from "~/components/borehole-localities/BoreholeLocalitiesPagination.vue"
+import type { BoreholeLocalitiesCmsData } from "~/types/cms"
 
 vi.stubGlobal("computed", computed)
 
