@@ -29,9 +29,8 @@ Page → Composable → $fetch('/api/{entity}') → Server route → External AP
 - Server routes live in `/server/api/`
 - Each API entity has its own server route file, e.g. `/server/api/borehole-localities.get.ts`
 
-Examples:
+Example:
 
-- Borehole localities API helpers: `/app/lib/borehole-localities`
 - Borehole localities server route: `/server/api/borehole-localities.get.ts`
 
 ## Server routes (`/server/api`)
@@ -119,7 +118,6 @@ export default defineCachedEventHandler(
 
 ## Testing expectations
 
-- `/app/lib/{entity-name}` functions should be testable (pure-ish, stub `$fetch` globally).
 - Server routes are tested implicitly via integration or by testing the composable with mocked `$fetch`.
 - When behavior changes, update tests, documentation and claude instructions accordingly.
 

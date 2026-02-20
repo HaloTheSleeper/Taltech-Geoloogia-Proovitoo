@@ -45,10 +45,3 @@ export interface BoreholeLocalitiesResponse {
   previous: string | null
   results: BoreholeLocality[]
 }
-
-export interface BoreholeLocalitiesParams {
-  limit: number
-  offset: number
-  name__icontains?: string
-  expand?: string
-}

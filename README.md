@@ -77,8 +77,7 @@ app/
   composables/       # Reactive state, loading/error handling, calls into lib
     borehole-localities/  # Borehole localities data composable
     cms/                  # CMS data composables
-  lib/               # Pure logic, API/CMS fetching (no Vue reactivity)
-    borehole-localities/  # Borehole localities API call helpers
+  lib/               # Pure logic, CMS fetching (no Vue reactivity)
     cms/                  # CMS mock data fetching
   types/             # TypeScript type definitions
     api/              # External API types (responses, params) — barrel at index.ts
@@ -95,7 +94,6 @@ public/
 tests/
   unit/              # Unit tests
     components/      # Component tests
-    utils/           # Utility/lib function tests
   integration/       # Integration tests
 .claude/             # Claude Code agent instructions
 ```
@@ -107,7 +105,7 @@ The project follows a layered architecture with strict separation of concerns:
 - **Components** (`/app/components`) — Presentational only. Receive data via props, emit events. Never fetch data directly.
 - **Pages** (`/app/pages`) — Route-level orchestration. Use composables to fetch and display data.
 - **Composables** (`/app/composables`) — Manage reactive state, loading/error handling. Call into server API routes via `useAsyncData` + `$fetch`.
-- **Lib** (`/app/lib`) — Pure data-fetching logic and transformations. No Vue reactivity. Each API entity gets its own folder (e.g., `/app/lib/borehole-localities`).
+- **Lib** (`/app/lib`) — Pure logic and transformations. No Vue reactivity. CMS fetching logic lives under `/app/lib/cms`.
 - **Server routes** (`/server/api`) — Nitro server routes that proxy external API requests. Read API URLs from server-only `runtimeConfig`. Responses are cached.
 - **Types** (`/app/types`) — TypeScript type definitions split by data source: `api/` for external API types, `cms/` for CMS types. Each subfolder has a barrel `index.ts` — always import from `~/types/api` or `~/types/cms`.
 

@@ -82,7 +82,6 @@ See:
 
 `/app/lib`
 
-- Borehole localities API helper functions live under `/lib/borehole-localities`
 - CMS fetching logic lives under `/lib/cms`
 - Pure logic
 - No Vue reactivity
