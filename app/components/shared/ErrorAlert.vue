@@ -26,7 +26,12 @@ defineEmits<{
     <AlertDescription class="mt-2 text-base text-muted-foreground">
       {{ description }}
     </AlertDescription>
-    <Button variant="default" size="lg" class="mt-4" @click="$emit('retry')">
+    <Button
+      variant="default"
+      size="lg"
+      class="mt-4 block max-w-[300px] truncate"
+      @click="$emit('retry')"
+    >
       {{ retryLabel }}
     </Button>
   </Alert>

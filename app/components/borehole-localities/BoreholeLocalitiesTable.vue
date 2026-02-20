@@ -21,24 +21,52 @@ defineProps<{
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>{{ columns.id }}</TableHead>
-          <TableHead>{{ columns.name }}</TableHead>
-          <TableHead>{{ columns.country }}</TableHead>
-          <TableHead class="hidden sm:table-cell">{{ columns.latitude }}</TableHead>
-          <TableHead class="hidden sm:table-cell">{{ columns.longitude }}</TableHead>
-          <TableHead>{{ columns.depth }}</TableHead>
-          <TableHead class="hidden sm:table-cell">{{ columns.elevation }}</TableHead>
+          <TableHead
+            ><span class="block max-w-[60px] truncate">{{ columns.id }}</span></TableHead
+          >
+          <TableHead
+            ><span class="block max-w-[180px] truncate">{{ columns.name }}</span></TableHead
+          >
+          <TableHead
+            ><span class="block max-w-[100px] truncate">{{ columns.country }}</span></TableHead
+          >
+          <TableHead class="hidden sm:table-cell"
+            ><span class="block max-w-[100px] truncate">{{ columns.latitude }}</span></TableHead
+          >
+          <TableHead class="hidden sm:table-cell"
+            ><span class="block max-w-[100px] truncate">{{ columns.longitude }}</span></TableHead
+          >
+          <TableHead
+            ><span class="block max-w-[100px] truncate">{{ columns.depth }}</span></TableHead
+          >
+          <TableHead class="hidden sm:table-cell"
+            ><span class="block max-w-[100px] truncate">{{ columns.elevation }}</span></TableHead
+          >
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow v-for="locality in localities" :key="locality.id">
-          <TableCell class="font-medium">{{ locality.id }}</TableCell>
-          <TableCell>{{ locality.name || locality.name_en || "–" }}</TableCell>
-          <TableCell>{{ locality.country?.name || locality.country?.name_en || "–" }}</TableCell>
-          <TableCell class="hidden sm:table-cell">{{ locality.latitude ?? "–" }}</TableCell>
-          <TableCell class="hidden sm:table-cell">{{ locality.longitude ?? "–" }}</TableCell>
+          <TableCell class="font-medium max-w-[60px] truncate">{{ locality.id }}</TableCell>
+          <TableCell>
+            <span class="block max-w-[180px] truncate">{{
+              locality.name || locality.name_en || "–"
+            }}</span>
+          </TableCell>
+          <TableCell>
+            <span class="block max-w-[100px] truncate">{{
+              locality.country?.name || locality.country?.name_en || "–"
+            }}</span>
+          </TableCell>
+          <TableCell class="hidden sm:table-cell max-w-[100px] truncate">{{
+            locality.latitude ?? "–"
+          }}</TableCell>
+          <TableCell class="hidden sm:table-cell max-w-[100px] truncate">{{
+            locality.longitude ?? "–"
+          }}</TableCell>
           <TableCell>{{ locality.depth ?? "–" }}</TableCell>
-          <TableCell class="hidden sm:table-cell">{{ locality.elevation ?? "–" }}</TableCell>
+          <TableCell class="hidden sm:table-cell max-w-[100px] truncate">{{
+            locality.elevation ?? "–"
+          }}</TableCell>
         </TableRow>
       </TableBody>
     </Table>

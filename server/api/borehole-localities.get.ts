@@ -1,5 +1,4 @@
 import type { BoreholeLocalitiesResponse } from "~/types/api"
-import { fetchBoreholeLocalities } from "~/lib/borehole-localities"
 
 export default defineCachedEventHandler(
   async (event) => {

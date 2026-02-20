@@ -29,37 +29,38 @@ const pageInfo = computed(() =>
 </script>
 
 <template>
-  <Pagination
-    :page="page"
-    :total="totalPages * PAGE_SIZE"
-    :items-per-page="PAGE_SIZE"
-    :sibling-count="1"
-    @update:page="$emit('update:page', $event)"
-  >
-    <PaginationContent v-slot="{ items }" class="flex-wrap gap-1.5 sm:gap-1">
-      <PaginationPrevious as="button">
-        {{ labels.previous }}
-      </PaginationPrevious>
+  <div class="flex flex-col items-center">
+    <Pagination
+      :page="page"
+      :total="totalPages * PAGE_SIZE"
+      :items-per-page="PAGE_SIZE"
+      :sibling-count="1"
+      @update:page="$emit('update:page', $event)"
+    >
+      <PaginationContent v-slot="{ items }" class="flex-wrap gap-1.5 sm:gap-1">
+        <PaginationPrevious as="button" class="block max-w-[100px] truncate">
+          {{ labels.previous }}
+        </PaginationPrevious>
 
-      <template v-for="(item, index) in items" :key="index">
-        <PaginationItem
-          v-if="item.type === 'page'"
-          :value="item.value"
-          :is-active="item.value === page"
-          as="button"
-        >
-          {{ item.value }}
-        </PaginationItem>
-        <PaginationEllipsis v-else :index="index" />
-      </template>
+        <template v-for="(item, index) in items" :key="index">
+          <PaginationItem
+            v-if="item.type === 'page'"
+            :value="item.value"
+            :is-active="item.value === page"
+            as="button"
+          >
+            {{ item.value }}
+          </PaginationItem>
+          <PaginationEllipsis v-else :index="index" />
+        </template>
 
-      <PaginationNext as="button">
-        {{ labels.next }}
-      </PaginationNext>
-    </PaginationContent>
-
-    <p class="mt-2 text-center text-sm text-muted-foreground">
+        <PaginationNext as="button" class="block max-w-[100px] truncate">
+          {{ labels.next }}
+        </PaginationNext>
+      </PaginationContent>
+    </Pagination>
+    <p class="mt-2 text-center text-sm text-muted-foreground block max-w-[150px] truncate">
       {{ pageInfo }}
     </p>
-  </Pagination>
+  </div>
 </template>
