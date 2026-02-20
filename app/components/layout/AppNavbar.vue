@@ -10,6 +10,14 @@ defineProps<{
 const route = useRoute()
 const localSearch = ref((route.query.search as string) || "")
 
+watch(
+  () => route.query.search,
+  (v) => {
+    localSearch.value = (v as string) || ""
+  },
+  { immediate: true },
+)
+
 const debouncedNavigate = useDebounceFn((value: string) => {
   navigateTo({
     path: route.path,

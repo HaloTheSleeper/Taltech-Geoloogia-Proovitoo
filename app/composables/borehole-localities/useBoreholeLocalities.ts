@@ -10,25 +10,26 @@ export const useBoreholeLocalities = () => {
     return p > 0 ? p : 1
   })
 
-  const searchQuery = computed(() => {
-    return (route.query.search as string) || ""
-  })
+  const searchQuery = computed(() => (route.query.search as string) || "")
+
+  const params = computed(() => ({
+    limit: PAGE_SIZE,
+    offset: (page.value - 1) * PAGE_SIZE,
+    name__icontains: searchQuery.value || undefined,
+    expand: "country",
+  }))
 
   const { data, status, error, refresh } = useAsyncData(
     "borehole-localities",
-    () =>
-      $fetch<BoreholeLocalitiesResponse>("/api/borehole-localities", {
-        params: {
-          limit: PAGE_SIZE,
-          offset: (page.value - 1) * PAGE_SIZE,
-          name__icontains: searchQuery.value || undefined,
-          expand: "country",
-        },
-      }),
+    () => $fetch<BoreholeLocalitiesResponse>("/api/borehole-localities", { params: params.value }),
     {
-      watch: [page, searchQuery],
+      dedupe: "cancel",
     },
   )
+
+  watch([page, searchQuery], () => {
+    refresh()
+  })
 
   const localities = computed(() => data.value?.results ?? [])
   const totalCount = computed(() => data.value?.count ?? 0)
