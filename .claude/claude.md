@@ -35,7 +35,6 @@ Basic project information can be found in the `README.md` in the repository root
 
 See:
 
-- `./rules/stack.md`
 - `./rules/tests.md`
 - `./rules/ui.md` (shadcn + styling rules)
 

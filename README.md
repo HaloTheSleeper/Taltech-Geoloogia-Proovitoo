@@ -62,41 +62,80 @@ These are server-only variables — they are read via Nuxt's `runtimeConfig` and
 
 ```
 app/
-  app.vue            # Root component
-  components/        # Presentational Vue components (no data fetching)
-    ui/              # shadcn-vue components (alert, button, input, table, pagination, skeleton)
-    borehole-localities/  # Borehole locality list components
-      BoreholeLocalitiesTable/      # Data table
-      BoreholeLocalitiesLoading/    # Skeleton loading state
-      BoreholeLocalitiesEmpty/      # Empty state (no results)
-      BoreholeLocalitiesPagination/ # Pagination controls
-    AppNavbar/       # Navigation bar with search
-    AppFooter/       # Footer
-    ErrorAlert/      # Reusable error alert with retry
-  pages/             # Route-level pages (orchestrate via composables)
-  composables/       # Reactive state, loading/error handling, calls into lib
-    borehole-localities/  # Borehole localities data composable
-    cms/                  # CMS data composables
-  lib/               # Pure logic, CMS fetching (no Vue reactivity)
-    cms/                  # CMS mock data fetching
-  types/             # TypeScript type definitions
-    api/              # External API types (responses, params) — barrel at index.ts
-    cms/              # CMS JSON types — barrel at index.ts
+  app.vue                              # Root component
+  components/                          # Presentational Vue components (no data fetching)
+    ui/                                # shadcn-vue components (alert, button, input, table, pagination, skeleton)
+    borehole-localities/               # Borehole locality components
+      BoreholeLocalitiesTable.vue         # Data table
+      BoreholeLocalitiesLoading.vue       # Skeleton loading state
+      BoreholeLocalitiesEmpty.vue         # Empty state (no results)
+      BoreholeLocalitiesPagination.vue    # Pagination controls
+      BoreholeLocalityDetailInfo.vue      # Detail info card
+      BoreholeLocalityDetailMap.client.vue # Detail map (client-only)
+    layout/                            # App shell components
+      AppNavbar.vue                       # Navigation bar with search
+      AppFooter.vue                       # Footer
+    shared/                            # Reusable cross-feature components
+      ErrorAlert.vue                      # Error alert with retry
+  pages/                               # Route-level pages (orchestrate via composables)
+    index.vue                             # Home page (borehole localities list)
+    borehole-localities/
+      [id].vue                            # Borehole locality detail page
+  composables/                         # Reactive state, loading/error handling, calls into lib
+    borehole-localities/
+      useBoreholeLocalities.ts            # List data fetching + pagination/search state
+      useBoreholeLocalityDetail.ts        # Single locality data fetching
+    cms/
+      useLayoutData.ts                    # Layout CMS data (navbar, footer)
+      useBoreholeLocalitiesCms.ts         # List page CMS data
+      useBoreholeLocalityDetailCms.ts     # Detail page CMS data
+  lib/                                 # Pure logic, CMS fetching (no Vue reactivity)
+    cms/
+      fetch-cms-data.ts                   # CMS data fetching (SSR filesystem / client $fetch)
+      cms-path.ts                         # CMS file path resolver
+      index.ts                            # Barrel export
+    utils.ts                              # Utility functions (cn)
+    constants.ts                          # Shared constants (e.g. PAGE_SIZE)
+  types/                               # TypeScript type definitions
+    api/
+      borehole-localities.ts              # API response/param types
+      index.ts                            # Barrel export
+    cms/
+      layout.ts                           # Layout CMS types
+      borehole-localities.ts              # List page CMS types
+      borehole-locality-detail.ts         # Detail page CMS types
+      index.ts                            # Barrel export
 server/
-  api/               # Nitro server API routes
-    borehole-localities.get.ts       # Proxies list requests to the external localities API
-    borehole-localities/[id].get.ts  # Proxies detail requests for a single locality
+  api/                                 # Nitro server API routes
+    borehole-localities.get.ts            # Proxies list requests to external API
+    borehole-localities/
+      [id].get.ts                         # Proxies detail requests for a single locality
 public/
-  data/              # Mock CMS JSON files
-    layout.json                    # Navbar and footer text
-    borehole-localities.json       # List page text (columns, empty state, errors, pagination)
-    borehole-locality-detail.json  # Detail page text (field labels, map, errors)
+  data/                                # Mock CMS JSON files
+    layout.json                           # Navbar and footer text
+    borehole-localities.json              # List page text (columns, empty state, errors, pagination)
+    borehole-locality-detail.json         # Detail page text (field labels, map, errors)
 tests/
-  unit/              # Unit tests
-    components/      # Component tests
-    server/          # Server route tests
-  integration/       # Integration tests
-.claude/             # Claude Code agent instructions
+  unit/
+    components/                        # Component unit tests
+      AppFooter.test.ts
+      AppNavbar.test.ts
+      AppRoot.test.ts
+      BoreholeLocalitiesEmpty.test.ts
+      BoreholeLocalitiesLoading.test.ts
+      BoreholeLocalitiesPagination.test.ts
+      BoreholeLocalitiesTable.test.ts
+      BoreholeLocalityDetailInfo.test.ts
+      BoreholeLocalityDetailMap.test.ts
+      ErrorAlert.test.ts
+    server/                            # Server route unit tests
+      boreholeLocalities.test.ts
+      boreholeLocalityDetail.test.ts
+  integration/                         # Integration tests
+    fetchCmsData.test.ts
+    useBoreholeLocalities.test.ts
+    useBoreholeLocalityDetail.test.ts
+.claude/                               # Claude Code agent instructions
 ```
 
 ## Architecture
@@ -150,11 +189,11 @@ We currently don't have a CMS, but the codebase is structured in a way that allo
 
 ### Current CMS data files
 
-| File                              | Purpose                                               |
-| --------------------------------- | ----------------------------------------------------- |
-| `layout.json`                     | Navbar title, search placeholder, footer text         |
-| `borehole-localities.json`        | List page: column labels, empty/error/pagination text |
-| `borehole-locality-detail.json`   | Detail page: field labels, map text, error/back text  |
+| File                            | Purpose                                               |
+| ------------------------------- | ----------------------------------------------------- |
+| `layout.json`                   | Navbar title, search placeholder, footer text         |
+| `borehole-localities.json`      | List page: column labels, empty/error/pagination text |
+| `borehole-locality-detail.json` | Detail page: field labels, map text, error/back text  |
 
 ## Fonts
 

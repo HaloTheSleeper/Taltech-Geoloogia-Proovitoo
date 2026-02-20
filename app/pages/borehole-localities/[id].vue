@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ArrowLeft, MapPinOff } from "lucide-vue-next"
-import { Button } from "~/components/ui/button"
 
 const { data: cms } = await useBoreholeLocalityDetailCms()
 const { locality, isLoading, error, refresh } = useBoreholeLocalityDetail()

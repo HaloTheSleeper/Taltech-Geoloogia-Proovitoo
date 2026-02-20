@@ -8,8 +8,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "~/components/ui/pagination"
-
-const PAGE_SIZE = 20
+import { PAGE_SIZE } from "~/lib/constants"
 
 const props = defineProps<{
   page: number

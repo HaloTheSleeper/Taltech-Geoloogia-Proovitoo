@@ -1,6 +1,5 @@
 import type { BoreholeLocalitiesResponse } from "~/types/api"
-
-const PAGE_SIZE = 20
+import { PAGE_SIZE } from "~/lib/constants"
 
 export const useBoreholeLocalities = () => {
   const route = useRoute()
