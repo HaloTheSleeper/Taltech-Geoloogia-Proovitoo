@@ -18,7 +18,6 @@ export default defineCachedEventHandler(
   },
   {
     maxAge: 60 * 60,
-    varies: ["x-query"],
     getKey: (event) => {
       const query = getQuery(event)
       return `borehole-localities:${query.limit}:${query.offset}:${query.name__icontains || ""}:${query.expand || ""}`
