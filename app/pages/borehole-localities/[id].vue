@@ -22,7 +22,7 @@ const handleBack = () => {
       </Button>
     </div>
 
-    <BoreholeLocalitiesLoading v-if="isLoading" />
+    <BoreholeLocalityDetailLoading v-if="isLoading" />
 
     <SharedErrorAlert
       v-else-if="error && cms"

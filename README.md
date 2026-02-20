@@ -71,6 +71,7 @@ app/
       BoreholeLocalitiesEmpty.vue         # Empty state (no results)
       BoreholeLocalitiesPagination.vue    # Pagination controls
       BoreholeLocalityDetailInfo.vue      # Detail info card
+      BoreholeLocalityDetailLoading.vue   # Detail skeleton loading state
       BoreholeLocalityDetailMap.client.vue # Detail map (client-only)
     layout/                            # App shell components
       AppNavbar.vue                       # Navigation bar with search
@@ -126,6 +127,7 @@ tests/
       BoreholeLocalitiesPagination.test.ts
       BoreholeLocalitiesTable.test.ts
       BoreholeLocalityDetailInfo.test.ts
+      BoreholeLocalityDetailLoading.test.ts
       BoreholeLocalityDetailMap.test.ts
       ErrorAlert.test.ts
     server/                            # Server route unit tests
