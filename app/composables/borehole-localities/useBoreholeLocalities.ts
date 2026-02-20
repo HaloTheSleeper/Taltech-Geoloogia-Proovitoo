@@ -27,9 +27,13 @@ export const useBoreholeLocalities = () => {
     },
   )
 
-  watch([page, searchQuery], () => {
-    refresh()
-  })
+  watch(
+    [page, searchQuery],
+    () => {
+      refresh()
+    },
+    { immediate: true },
+  )
 
   const localities = computed(() => data.value?.results ?? [])
   const totalCount = computed(() => data.value?.count ?? 0)
