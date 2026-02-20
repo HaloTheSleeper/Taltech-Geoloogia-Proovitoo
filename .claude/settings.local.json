@@ -18,7 +18,8 @@
       "Bash(ls:*)",
       "Bash(curl:*)",
       "Bash(python -m json.tool:*)",
-      "Bash(node -e:*)"
+      "Bash(node -e:*)",
+      "Bash(npx vitest:*)"
     ]
   }
 }

@@ -130,7 +130,7 @@ describe("server/api/borehole-localities.get", () => {
 
       await handler(fakeEvent)
 
-      const params = mockFetch.mock.calls[0][1].params
+      const params = (mockFetch.mock.calls[0]![1] as { params: Record<string, string> }).params
       expect(params).not.toHaveProperty("name__icontains")
     })
 
@@ -152,7 +152,7 @@ describe("server/api/borehole-localities.get", () => {
 
       await handler(fakeEvent)
 
-      const params = mockFetch.mock.calls[0][1].params
+      const params = (mockFetch.mock.calls[0]![1] as { params: Record<string, string> }).params
       expect(params).not.toHaveProperty("expand")
     })
 

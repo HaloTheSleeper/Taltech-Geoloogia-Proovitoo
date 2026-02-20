@@ -1,11 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from "vitest"
-import { ref, computed } from "vue"
+import { ref, computed, watch } from "vue"
 import { flushPromises } from "@vue/test-utils"
 import type { BoreholeLocality, BoreholeLocalitiesResponse } from "~/types/api"
 
 // Stub Vue reactivity as Nuxt globals
 vi.stubGlobal("ref", ref)
 vi.stubGlobal("computed", computed)
+vi.stubGlobal("watch", watch)
 
 const mockFetch = vi.fn()
 vi.stubGlobal("$fetch", mockFetch)

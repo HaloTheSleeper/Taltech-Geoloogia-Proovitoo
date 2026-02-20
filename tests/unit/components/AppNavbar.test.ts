@@ -1,9 +1,10 @@
 import { describe, it, expect, vi } from "vitest"
 import { mount } from "@vue/test-utils"
-import { ref } from "vue"
+import { ref, watch } from "vue"
 import AppNavbar from "~/components/layout/AppNavbar.vue"
 
 vi.stubGlobal("ref", ref)
+vi.stubGlobal("watch", watch)
 
 vi.stubGlobal("useRoute", () => ({
   query: {},
