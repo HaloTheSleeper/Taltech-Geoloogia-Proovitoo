@@ -29,7 +29,7 @@ const handleInput = (event: Event) => {
 </script>
 
 <template>
-  <nav class="bg-primary text-primary-foreground">
+  <header class="bg-primary text-primary-foreground">
     <div class="content-container py-3">
       <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <h1 class="min-w-0 truncate font-heading text-lg font-semibold 2xl:text-xl">
@@ -45,5 +45,5 @@ const handleInput = (event: Event) => {
         </div>
       </div>
     </div>
-  </nav>
+  </header>
 </template>
