@@ -32,7 +32,7 @@ const handlePageChange = (newPage: number) => {
 
       <template v-else-if="cms">
         <BoreholeLocalitiesEmpty
-          v-if="totalCount === 0"
+          v-if="totalCount === 0 || (localities && localities.length === 0)"
           :title="cms.emptyState.title"
           :description="cms.emptyState.description"
         />
