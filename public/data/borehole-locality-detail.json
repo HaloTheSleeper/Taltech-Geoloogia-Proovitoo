@@ -1,0 +1,33 @@
+{
+  "backButton": "Tagasi loendisse",
+  "pageTitle": "Puuraugu detailvaade",
+  "mapTitle": "Asukoht kaardil",
+  "coordinatesNotAvailable": "Koordinaadid puuduvad — kaarti ei saa kuvada.",
+  "fields": {
+    "id": "ID",
+    "name": "Nimi",
+    "nameEn": "Nimi (inglise k.)",
+    "country": "Riik",
+    "latitude": "Laiuskraad",
+    "longitude": "Pikkuskraad",
+    "depth": "Sügavus (m)",
+    "elevation": "Kõrgus (m)",
+    "number": "Number",
+    "code": "Kood",
+    "coordx": "X-koordinaat",
+    "coordy": "Y-koordinaat",
+    "epsg": "EPSG",
+    "landBoardId": "Maa-ameti ID",
+    "remarks": "Märkused",
+    "remarksLocation": "Asukoha märkused",
+    "stratigraphyBaseText": "Stratigraafia (alumine)",
+    "stratigraphyTopText": "Stratigraafia (ülemine)",
+    "dateAdded": "Lisatud",
+    "dateChanged": "Muudetud"
+  },
+  "error": {
+    "title": "Andmete laadimine ebaõnnestus",
+    "description": "Puuraugu andmeid ei õnnestunud laadida. Palun proovige uuesti.",
+    "retryLabel": "Proovi uuesti"
+  }
+}

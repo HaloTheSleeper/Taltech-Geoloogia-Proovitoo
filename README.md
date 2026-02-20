@@ -85,11 +85,13 @@ app/
     cms/              # CMS JSON types — barrel at index.ts
 server/
   api/               # Nitro server API routes
-    borehole-localities.get.ts  # Proxies requests to the external localities API
+    borehole-localities.get.ts       # Proxies list requests to the external localities API
+    borehole-localities/[id].get.ts  # Proxies detail requests for a single locality
 public/
   data/              # Mock CMS JSON files
-    layout.json              # Navbar and footer text
-    borehole-localities.json # List page text (columns, empty state, errors, pagination)
+    layout.json                    # Navbar and footer text
+    borehole-localities.json       # List page text (columns, empty state, errors, pagination)
+    borehole-locality-detail.json  # Detail page text (field labels, map, errors)
 tests/
   unit/              # Unit tests
     components/      # Component tests
@@ -131,6 +133,17 @@ This ensures the external API URL stays server-side only and is never exposed to
 - Error state with retry button (reusable ErrorAlert component)
 - Empty state when no results are found
 - All UI text comes from CMS data (`/public/data/borehole-localities.json`)
+- Clicking a table row navigates to the detail view
+
+### Borehole locality detail view (`/borehole-localities/:id`)
+
+- Fetches a single borehole locality from the external API via a dedicated server route
+- Displays all available fields in a structured info card (name, country, coordinates, depth, elevation, code, stratigraphy, remarks, dates, etc.)
+- Map integration using [vue-leaflet](https://github.com/vue-leaflet/vue-leaflet) — displays the locality coordinates on an OpenStreetMap tile layer
+- Gracefully handles missing coordinates with a fallback message ("Coordinates not available")
+- Back button to navigate to the list page
+- Loading, error, and empty states
+- All UI text comes from CMS data (`/public/data/borehole-locality-detail.json`)
 
 ## CMS readiness
 
@@ -138,10 +151,11 @@ We currently don't have a CMS, but the codebase is structured in a way that allo
 
 ### Current CMS data files
 
-| File                       | Purpose                                               |
-| -------------------------- | ----------------------------------------------------- |
-| `layout.json`              | Navbar title, search placeholder, footer text         |
-| `borehole-localities.json` | List page: column labels, empty/error/pagination text |
+| File                              | Purpose                                               |
+| --------------------------------- | ----------------------------------------------------- |
+| `layout.json`                     | Navbar title, search placeholder, footer text         |
+| `borehole-localities.json`        | List page: column labels, empty/error/pagination text |
+| `borehole-locality-detail.json`   | Detail page: field labels, map text, error/back text  |
 
 ## Fonts
 

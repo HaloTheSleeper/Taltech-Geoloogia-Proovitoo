@@ -51,7 +51,7 @@ See:
 - `/components/ui/` — shadcn-vue components (auto-generated, leave as-is)
 - `/components/layout/` — app shell components (`AppNavbar`, `AppFooter`); auto-imported by Nuxt as `<LayoutAppNavbar>`, `<LayoutAppFooter>`
 - `/components/shared/` — reusable cross-feature components (e.g. `ErrorAlert`); auto-imported as `<SharedErrorAlert>`
-- `/components/borehole-localities/` — components specific to borehole localities data
+- `/components/borehole-localities/` — components specific to borehole localities data (list table, detail info card, detail map, loading, empty, pagination)
 
 ### Pages
 
@@ -112,6 +112,7 @@ CMS data files:
 
 - `/public/data/layout.json` — navbar title, search placeholder, footer copyright text
 - `/public/data/borehole-localities.json` — list page column labels, empty state, error messages, pagination labels
+- `/public/data/borehole-locality-detail.json` — detail page field labels, map text, back button, error messages
 
 See:
 

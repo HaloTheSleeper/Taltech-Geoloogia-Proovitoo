@@ -10,6 +10,7 @@ Current files:
 
 - `/public/data/layout.json` — navbar title, search placeholder, footer copyright text
 - `/public/data/borehole-localities.json` — list page column labels, empty state, error messages, pagination labels
+- `/public/data/borehole-locality-detail.json` — detail page field labels, map title, coordinates-not-available message, back button, error messages
 
 Access pattern:
 

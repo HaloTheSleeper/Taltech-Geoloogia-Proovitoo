@@ -57,7 +57,12 @@ defineProps<{
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow v-for="locality in localities" :key="locality.id">
+        <TableRow
+          v-for="locality in localities"
+          :key="locality.id"
+          class="cursor-pointer transition-colors hover:bg-muted/50"
+          @click="navigateTo(`/borehole-localities/${locality.id}`)"
+        >
           <TableCell class="font-medium max-w-[60px] truncate">{{ locality.id }}</TableCell>
           <TableCell>
             <span class="block max-w-[180px] truncate 2xl:max-w-xs">{{
