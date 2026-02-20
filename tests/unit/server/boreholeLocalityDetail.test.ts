@@ -15,6 +15,16 @@ let mockRouterParam = "42"
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 vi.stubGlobal("getRouterParam", (_event: unknown, _param: string) => mockRouterParam)
 
+vi.stubGlobal("createError", (input: { statusCode: number; statusMessage: string }) => {
+  const err = new Error(input.statusMessage) as Error & {
+    statusCode: number
+    statusMessage: string
+  }
+  err.statusCode = input.statusCode
+  err.statusMessage = input.statusMessage
+  return err
+})
+
 // defineCachedEventHandler: extract the handler and cache options
 let handler: (event: unknown) => Promise<unknown>
 let cacheOptions: { maxAge: number; getKey: (event: unknown) => string }
@@ -138,10 +148,25 @@ describe("server/api/borehole-localities/[id].get", () => {
       expect(result).toEqual(locality)
     })
 
-    it("propagates errors from the external API", async () => {
-      mockFetch.mockRejectedValue(new Error("Not found"))
+    it("throws 502 when external API returns a non-404 error", async () => {
+      mockFetch.mockRejectedValue({ response: { status: 500 } })
 
-      await expect(handler(fakeEvent)).rejects.toThrow("Not found")
+      await expect(handler(fakeEvent)).rejects.toThrow("Failed to fetch from external API")
+      await expect(handler(fakeEvent)).rejects.toMatchObject({ statusCode: 502 })
+    })
+
+    it("throws 404 when external API returns 404", async () => {
+      mockFetch.mockRejectedValue({ response: { status: 404 } })
+
+      await expect(handler(fakeEvent)).rejects.toThrow("Resource not found")
+      await expect(handler(fakeEvent)).rejects.toMatchObject({ statusCode: 404 })
+    })
+
+    it("throws 502 when external API throws without a response status", async () => {
+      mockFetch.mockRejectedValue(new Error("Network failure"))
+
+      await expect(handler(fakeEvent)).rejects.toThrow("Failed to fetch from external API")
+      await expect(handler(fakeEvent)).rejects.toMatchObject({ statusCode: 502 })
     })
   })
 

@@ -8,11 +8,19 @@ export default defineCachedEventHandler(
 
     const detailUrl = baseUrl.endsWith("/") ? `${baseUrl}${id}/` : `${baseUrl}/${id}/`
 
-    return $fetch<BoreholeLocality>(detailUrl, {
-      params: {
-        expand: "country",
-      },
-    })
+    try {
+      return await $fetch<BoreholeLocality>(detailUrl, {
+        params: {
+          expand: "country",
+        },
+      })
+    } catch (error) {
+      const status = (error as { response?: { status?: number } })?.response?.status
+      throw createError({
+        statusCode: status === 404 ? 404 : 502,
+        statusMessage: status === 404 ? "Resource not found" : "Failed to fetch from external API",
+      })
+    }
   },
   {
     maxAge: 60 * 60,
