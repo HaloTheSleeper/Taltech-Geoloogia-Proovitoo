@@ -6,7 +6,7 @@ export const useBoreholeLocalities = () => {
 
   const page = computed(() => {
     const p = Number(route.query.page)
-    return p > 0 ? p : 1
+    return p > 0 ? Math.trunc(p) : 1
   })
 
   const searchQuery = computed(() => (route.query.search as string) || "")

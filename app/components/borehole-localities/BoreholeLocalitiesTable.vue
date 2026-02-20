@@ -75,14 +75,16 @@ defineProps<{
             }}</span>
           </TableCell>
           <TableCell class="hidden sm:table-cell max-w-[100px] truncate 2xl:max-w-[150px]">{{
-            locality.latitude ?? "–"
+            locality.latitude || "–"
           }}</TableCell>
           <TableCell class="hidden sm:table-cell max-w-[100px] truncate 2xl:max-w-[150px]">{{
-            locality.longitude ?? "–"
+            locality.longitude || "–"
           }}</TableCell>
-          <TableCell>{{ locality.depth ?? "–" }}</TableCell>
+          <TableCell class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
+            locality.depth || "–"
+          }}</TableCell>
           <TableCell class="hidden sm:table-cell max-w-[100px] truncate 2xl:max-w-[150px]">{{
-            locality.elevation ?? "–"
+            locality.elevation || "–"
           }}</TableCell>
         </TableRow>
       </TableBody>
