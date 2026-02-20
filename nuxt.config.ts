@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["composables/**"],
   },
-  css: ["~/assets/css/main.css", "leaflet/dist/leaflet.css"],
+  css: ["~/assets/css/main.css"],
   components: [
     {
       path: "~/components/ui",
