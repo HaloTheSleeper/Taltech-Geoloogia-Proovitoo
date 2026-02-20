@@ -20,6 +20,7 @@ Tests should be located in the `/tests` directory, following the structure:
 /tests
 /unit
 components/
+server/
 /integration
 
 Be consistent.

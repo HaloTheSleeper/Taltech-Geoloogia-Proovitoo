@@ -118,7 +118,12 @@ export default defineCachedEventHandler(
 
 ## Testing expectations
 
-- Server routes are tested implicitly via integration or by testing the composable with mocked `$fetch`.
+- Server routes have dedicated unit tests in `/tests/unit/server/` that mock Nitro globals (`$fetch`, `useRuntimeConfig`, `getQuery`, `getRouterParam`, `defineCachedEventHandler`) and verify:
+  - Correct external URL is called with forwarded query params
+  - Cache key generation includes all relevant params
+  - Cache TTL is set correctly
+  - Errors from the external API propagate correctly
+- Composables are tested in `/tests/integration/` with mocked `$fetch` and Nuxt globals.
 - When behavior changes, update tests, documentation and claude instructions accordingly.
 
 See also:

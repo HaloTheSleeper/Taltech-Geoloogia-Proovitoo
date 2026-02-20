@@ -94,6 +94,7 @@ public/
 tests/
   unit/              # Unit tests
     components/      # Component tests
+    server/          # Server route tests
   integration/       # Integration tests
 .claude/             # Claude Code agent instructions
 ```
