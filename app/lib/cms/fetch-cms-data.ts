@@ -15,5 +15,5 @@ export const fetchCmsData = async <T>(path: string): Promise<T> => {
     return parsed
   }
 
-  return (await $fetch(getCmsPath(path))) as T
+  return (await $fetch<T>(getCmsPath(path))) as T
 }
