@@ -19,30 +19,20 @@ export const useBoreholeLocalities = () => {
     expand: "country",
   }))
 
+  const key = computed(() => `borehole-localities:${page.value}:${searchQuery.value}`)
+
   const { data, status, error, refresh } = useAsyncData(
-    "borehole-localities",
+    key,
     () => $fetch<BoreholeLocalitiesResponse>("/api/borehole-localities", { params: params.value }),
     {
       dedupe: "cancel",
     },
   )
 
-  watch(
-    [page, searchQuery],
-    () => {
-      refresh()
-    },
-    { immediate: true },
-  )
-
-  const localities = computed(() => data.value?.results ?? [])
-  const totalCount = computed(() => data.value?.count ?? 0)
-  const totalPages = computed(() => Math.max(1, Math.ceil(totalCount.value / PAGE_SIZE)))
-
   return {
-    localities,
-    totalCount,
-    totalPages,
+    localities: computed(() => data.value?.results ?? []),
+    totalCount: computed(() => data.value?.count ?? 0),
+    totalPages: computed(() => Math.max(1, Math.ceil((data.value?.count ?? 0) / PAGE_SIZE))),
     page,
     searchQuery,
     isLoading: computed(() => status.value === "pending"),
