@@ -25,22 +25,34 @@ defineProps<{
             ><span class="block max-w-[60px] truncate">{{ columns.id }}</span></TableHead
           >
           <TableHead
-            ><span class="block max-w-[180px] truncate">{{ columns.name }}</span></TableHead
+            ><span class="block max-w-[180px] truncate 2xl:max-w-xs">{{
+              columns.name
+            }}</span></TableHead
           >
           <TableHead
-            ><span class="block max-w-[100px] truncate">{{ columns.country }}</span></TableHead
+            ><span class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
+              columns.country
+            }}</span></TableHead
           >
           <TableHead class="hidden sm:table-cell"
-            ><span class="block max-w-[100px] truncate">{{ columns.latitude }}</span></TableHead
+            ><span class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
+              columns.latitude
+            }}</span></TableHead
           >
           <TableHead class="hidden sm:table-cell"
-            ><span class="block max-w-[100px] truncate">{{ columns.longitude }}</span></TableHead
+            ><span class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
+              columns.longitude
+            }}</span></TableHead
           >
           <TableHead
-            ><span class="block max-w-[100px] truncate">{{ columns.depth }}</span></TableHead
+            ><span class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
+              columns.depth
+            }}</span></TableHead
           >
           <TableHead class="hidden sm:table-cell"
-            ><span class="block max-w-[100px] truncate">{{ columns.elevation }}</span></TableHead
+            ><span class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
+              columns.elevation
+            }}</span></TableHead
           >
         </TableRow>
       </TableHeader>
@@ -48,23 +60,23 @@ defineProps<{
         <TableRow v-for="locality in localities" :key="locality.id">
           <TableCell class="font-medium max-w-[60px] truncate">{{ locality.id }}</TableCell>
           <TableCell>
-            <span class="block max-w-[180px] truncate">{{
+            <span class="block max-w-[180px] truncate 2xl:max-w-xs">{{
               locality.name || locality.name_en || "–"
             }}</span>
           </TableCell>
           <TableCell>
-            <span class="block max-w-[100px] truncate">{{
+            <span class="block max-w-[100px] truncate 2xl:max-w-[150px]">{{
               locality.country?.name || locality.country?.name_en || "–"
             }}</span>
           </TableCell>
-          <TableCell class="hidden sm:table-cell max-w-[100px] truncate">{{
+          <TableCell class="hidden sm:table-cell max-w-[100px] truncate 2xl:max-w-[150px]">{{
             locality.latitude ?? "–"
           }}</TableCell>
-          <TableCell class="hidden sm:table-cell max-w-[100px] truncate">{{
+          <TableCell class="hidden sm:table-cell max-w-[100px] truncate 2xl:max-w-[150px]">{{
             locality.longitude ?? "–"
           }}</TableCell>
           <TableCell>{{ locality.depth ?? "–" }}</TableCell>
-          <TableCell class="hidden sm:table-cell max-w-[100px] truncate">{{
+          <TableCell class="hidden sm:table-cell max-w-[100px] truncate 2xl:max-w-[150px]">{{
             locality.elevation ?? "–"
           }}</TableCell>
         </TableRow>

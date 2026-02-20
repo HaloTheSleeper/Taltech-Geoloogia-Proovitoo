@@ -15,7 +15,7 @@ const handlePageChange = (newPage: number) => {
 
 <template>
   <div class="content-container py-6 sm:py-8">
-    <h2 v-if="cms" class="truncate font-heading text-xl font-semibold sm:text-2xl">
+    <h2 v-if="cms" class="truncate font-heading text-xl font-semibold sm:text-2xl 2xl:text-3xl">
       {{ cms.pageTitle }}
     </h2>
 

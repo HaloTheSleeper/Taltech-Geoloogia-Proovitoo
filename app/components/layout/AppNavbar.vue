@@ -32,10 +32,10 @@ const handleInput = (event: Event) => {
   <nav class="bg-primary text-primary-foreground">
     <div class="content-container py-3">
       <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <h1 class="min-w-0 truncate font-heading text-lg font-semibold">
+        <h1 class="min-w-0 truncate font-heading text-lg font-semibold 2xl:text-xl">
           {{ title }}
         </h1>
-        <div class="w-full sm:max-w-sm">
+        <div class="w-full sm:max-w-sm 2xl:max-w-md">
           <Input
             :model-value="localSearch"
             :placeholder="searchPlaceholder"
